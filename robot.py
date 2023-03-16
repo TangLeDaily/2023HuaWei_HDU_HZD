@@ -21,7 +21,7 @@ class Robot:
         self.todo       = None  # 'buy' or 'sell' or None
 
         # instruct
-        self.speed_     = 6     # the speed we set for the robot
+        self.speed_     = 5.5     # the speed we set for the robot
         self.rotate_    = 0     # the rotate we set for the robot
         self.buy_       = False # whether to buy the goods
         self.sell_      = False # whether to sell the goods
@@ -60,7 +60,7 @@ class Robot:
             self.rotate_ = pi if toward_ - self.toward > 0 else -pi
         
         # v = sqrt(2ax)
-        self.speed_ = math.sqrt(dist(self.pos, self.destination)) * 2.8 - 0.2 if self.rotate_ != 0 else 6
+        self.speed_ = math.sqrt(dist(self.pos, self.destination)) * 2.8 - 0.2 if self.rotate_ != 0 else 5.5
 
         if abs(toward_ - self.toward) > pi / 2:
             self.speed_ = 0

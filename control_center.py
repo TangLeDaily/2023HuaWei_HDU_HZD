@@ -101,7 +101,9 @@ class ControlCenter:
               if sell_bar.readyToSell(buy_bar.sells()):
                   dist2 = self.dist[buy_bar.bar_id][sell_bar.bar_id]
                   distance = dist1 + dist2 + 8
-                  weight = profit(buy_bar.sells(), (dist2 / 6 + 0.4) * 50) / distance
+                  v0 = robot.speed_
+                  v1 = 0.72 * v0
+                  weight = profit(buy_bar.sells(), (dist2 / v1+0.5) * 50) / ((dist1/v0+dist2/v1)* (dist1/v0+dist2/v1) )
                   choices.append((buy_bar.bar_id, sell_bar.bar_id, weight))
         choices.sort(key=lambda x: x[2], reverse=True)
         if len(choices) == 0:
