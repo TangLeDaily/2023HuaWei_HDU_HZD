@@ -66,12 +66,9 @@ class ControlCenter:
     def readBarsStatus(self):
         """ read status of each workbench """
         num_bars = int(readline().strip())
-        file = open("testtt.txt", "a")
         assert num_bars == self.num_bars
         for i in range(num_bars):
             line = readline().strip()
-            file.write(line)
-            file.write("\n")
             self.bars[i].updateStatus(line)
 
     def readRobotStatus(self):
@@ -84,7 +81,7 @@ class ControlCenter:
 
     def formOrders(self):
         """ generate a list of orders for the robot """
-        #@TODO
+        # @TODO
         pass
 
     def getOrders(self):
@@ -104,9 +101,7 @@ class ControlCenter:
               if sell_bar.readyToSell(buy_bar.sells()):
                   dist2 = self.dist[buy_bar.bar_id][sell_bar.bar_id]
                   distance = dist1 + dist2 + 8
-                  v0 = robot.speed_
-                  v1 = 0.72 * v0
-                  weight = profit(buy_bar.sells(), (dist2 / v1+0.5) * 50) / ((dist1/v0+dist2/v1)* (dist1/v0+dist2/v1) )
+                  weight = profit(buy_bar.sells(), (dist2 / 6 + 0.6) * 50) / distance
                   choices.append((buy_bar.bar_id, sell_bar.bar_id, weight))
         choices.sort(key=lambda x: x[2], reverse=True)
         if len(choices) == 0:

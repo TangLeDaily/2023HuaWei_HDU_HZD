@@ -10,7 +10,7 @@ from bar import Bar
 if __name__ == '__main__':
     control_center = ControlCenter()
     control_center.readMaps()   
-    for i in range(9000):
+    for _ in range(9000):
         control_center.readFrameID_money() # read the first line data of each frame
         control_center.readBarsStatus()
         control_center.readRobotStatus()

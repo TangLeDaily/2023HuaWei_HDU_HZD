@@ -33,19 +33,15 @@ class Bar:
 
     def buys(self):
         return buys.get(self.bar_type, [])
-
     def sells(self):
         return self.bar_type if self.bar_type <= 7 else 0
     
     def readyToBuy(self) -> bool:
         return self.book_mask & 1 == 0
-
     def readyToSell(self, goods: int) -> bool:
         return ((self.buy_mask | self.book_mask) & (1 << goods)) == 0 and goods in self.buys()
-
     def preBook(self, goods: int) -> None:
         self.book_mask |= (1 << goods)
-
     def unbook(self, goods: int) -> None:
         self.book_mask &= ~(1 << goods)
     @staticmethod
